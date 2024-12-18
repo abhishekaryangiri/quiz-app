@@ -157,7 +157,7 @@ GET http://localhost:8080/api/quiz/result/1
    ```
 
 ## 2. Run the Application
-1. Ensure Java (JDK 11+) and Maven are installed.
+1. Ensure Java (JDK 1.8) and Maven are installed.
 2. Build the project:
    ```bash
    mvn clean install
