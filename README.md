@@ -173,7 +173,7 @@ GET http://localhost:8080/api/quiz/result/1
    ```
 
 ## 3. Test with Postman
-1. Install Postman: [postman.com](https://www.postman.com/).
+1. Install Postman.
 2. Use `http://localhost:8080` as the base URL.
 3. Test endpoints:
    - **GET**: Enter URL and click **Send**.
