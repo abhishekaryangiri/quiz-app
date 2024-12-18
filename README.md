@@ -152,8 +152,8 @@ GET http://localhost:8080/api/quiz/result/1
 1. Install Git.
 2. Clone the repo:
    ```bash
-   git clone <repository_url>
-   cd <repository_folder>
+   git clone https://github.com/abhishekaryangiri/quiz-app.git
+   cd desktop/github/quiz-app(local path)
    ```
 
 ## 2. Run the Application
