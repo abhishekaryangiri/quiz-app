@@ -118,7 +118,7 @@ This endpoint provides the result of the quiz for a specific user by their `user
 
 ---
 
-**Example Request (for userId = 1):**  
+**Request (for userId = 1):**  
 ```http
 GET http://localhost:8080/api/quiz/result/1
 ```
@@ -150,7 +150,7 @@ GET http://localhost:8080/api/quiz/result/1
 # How to Clone, Run, and Test the Spring Boot App
 
 ## 1. Clone the Repository
-1. Install Git: [git-scm.com](https://git-scm.com/).
+1. Install Git.
 2. Clone the repo:
    ```bash
    git clone <repository_url>
@@ -185,7 +185,7 @@ GET http://localhost:8080/api/quiz/result/1
 ## 4. mySql
 - Ensure the database is running .
 - Update `application.properties` with database credentials or configs.
-- # Quiz Application Database Schema
+- #  Database Schema
 
 ## 1. Create Database
 
