@@ -155,16 +155,17 @@ GET http://localhost:8080/api/quiz/result/1
    git clone https://github.com/abhishekaryangiri/quiz-app.git
    cd desktop/github/quiz-app(local path)
    ```
-3. or download this repository from github repo and unzip it and import the project as maven.
-4. set correct db configuration and set all configurations.
-5. 5. run as springboot app
+3. Or download this repository from github repo and unzip it and import the project as maven.
+    a. Set correct db configuration and set all configurations.
+    b. Run as springboot app.
 ## 2. Run the Application
 1. Ensure Java (JDK 1.8) and Maven are installed.
-2. Build the project:
+
+3. Build the project:
    ```bash
    mvn clean install
    ```
-3. Run the app:
+4. Run the app:
    ```bash
    mvn spring-boot:run
    ```
