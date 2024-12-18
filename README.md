@@ -149,26 +149,32 @@ GET http://localhost:8080/api/quiz/result/1
 # How to Clone, Run, and Test the Spring Boot App
 
 ## 1. Clone the Repository
-1. Install Git.
-2. Clone the repo:
-   ```bash
-   git clone https://github.com/abhishekaryangiri/quiz-app.git
-   cd desktop/github/quiz-app(local path)
-   ```
-3. Or download this repository from github repo and unzip it and import the project as maven.
-    a. Set correct db configuration and set all configurations.
-    b. Run as springboot app.
-## 2. Run the Application
-1. Ensure Java (JDK 1.8) and Maven are installed.
 
-3. Build the project:
+### Option 1: Clone the Repository Using Git
+
+1. Install Git if it's not already installed.
+   
+2. Download the repository to your local machine and unzip it:
    ```bash
-   mvn clean install
+   https://github.com/abhishekaryangiri/quiz-app.git
    ```
-4. Run the app:
-   ```bash
-   mvn spring-boot:run
-   ```
+Navigate to the project directory:
+```bash
+cd desktop/github/quiz-app  # Use your local path
+```
+3. Import project in IDE(Eclipse/STS).
+4. Set-up: Db, properties file etc.
+5. Run as Springboot App.
+6. Test ApPI's on postman.
+
+### Option 2: Clone the Repository
+```bash
+   git clone https://github.com/abhishekaryangiri/quiz-app.git
+```
+```bash
+   cd desktop/github/quiz-app  # Use your local path
+```
+
 ## 3. Test with Postman
 1. Install Postman.
 2. Use `http://localhost:8080` as the base URL.
