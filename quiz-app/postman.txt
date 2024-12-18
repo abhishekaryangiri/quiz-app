@@ -1,0 +1,335 @@
+1. Start a New Quiz
+
+Method: POST ->  http://localhost:8080/api/quiz/start/{userId}
+
+http://localhost:8080/api/quiz/start/123
+
+output: Quiz session started for user: 123
+
+status: 200 ok
+
+
+
+2. Get a Random Question
+Method: GET -> http://localhost:8080/api/quiz/question
+
+
+Steps to Test in Postman:
+GET -> http://localhost:8080/api/quiz/question
+<-
+
+Check the response
+
+
+
+3. Submit Answer
+
+Method: POST  -> http://localhost:8080/api/quiz/submit/{userId}
+
+or 
+
+POST  ->  http://localhost:8080/api/quiz/submit/100?questionId=6&selectedOption=4
+
+
+Replace {userId} with an actual user ID.
+{
+  "questionId": 1,
+  "selectedOption": 3
+}
+questionId: The ID of the question.
+selectedOption: The option chosen by the user (1-4).
+
+
+Response: A response indicating whether the answer is correct or incorrect
+-> correct
+-> Incorrect
+
+
+
+4. Get Quiz Result
+Method: GET -> http://localhost:8080/api/quiz/result/{userId}
+Replace {userId} with an actual user ID.
+
+result->
+
+{
+  "totalAnswered": 5,
+  "correctAnswers": 3,
+  "incorrectAnswers": 2
+}
+
+
+
+
+
+
+
+
+
+
+Start Quiz: POST http://localhost:8080/api/quiz/start/{userId}
+Get Question: GET http://localhost:8080/api/quiz/question
+Process Quiz: GET http://localhost:8080/api/quiz/process?questionId={id}
+Submit Answer: POST http://localhost:8080/api/quiz/submit/{userId}?questionId={id}&selectedOption={option}
+Get Result: GET http://localhost:8080/api/quiz/result/{userId}
+
+
+
+
+
+
+
+
+
+
+
+
+To test the APIs of your quiz application on port `8080`, you can use a tool like **Postman** or **cURL**. Here are the steps for testing each API endpoint that you have defined in your `QuizController` class.
+
+### 1. **Start the Application**
+Ensure that your Spring Boot application is running on port 8080. You can check this in the `application.properties` or `application.yml` file:
+
+```properties
+server.port=8080
+```
+
+Then, start your Spring Boot application by running:
+
+```bash
+mvn spring-boot:run
+```
+
+or if you are using Gradle:
+
+```bash
+./gradlew bootRun
+```
+
+### 2. **Testing the APIs**
+
+#### **1. Start Quiz (POST `/api/quiz/start/{userId}`)**
+
+**Purpose**: Starts a new quiz for the given user by `userId`.
+
+**Request Example**:
+- **Method**: `POST`
+- **URL**: `http://localhost:8080/api/quiz/start/1` (where `1` is a sample `userId`)
+- **Response**: Starts the quiz for the user.
+
+**Postman Setup**:
+- Method: `POST`
+- URL: `http://localhost:8080/api/quiz/start/{userId}` (replace `{userId}` with an actual numeric `userId`)
+
+#### **2. Get Random Question (GET `/api/quiz/question`)**
+
+**Purpose**: Fetches a random question from the quiz.
+
+**Request Example**:
+- **Method**: `GET`
+- **URL**: `http://localhost:8080/api/quiz/question`
+
+**Postman Setup**:
+- Method: `GET`
+- URL: `http://localhost:8080/api/quiz/question`
+
+**Expected Response**:
+- A JSON object containing the question and options:
+```json
+{
+    "id": 1,
+    "question": "What is the capital of France?",
+    "option1": "Paris",
+    "option2": "London",
+    "option3": "Berlin",
+    "option4": "Rome",
+    "correctOption": 1
+}
+```
+
+#### **3. Process Quiz (GET `/api/quiz/process`)**
+
+**Purpose**: Processes a given question ID.
+
+**Request Example**:
+- **Method**: `GET`
+- **URL**: `http://localhost:8080/api/quiz/process?questionId=1`
+
+**Postman Setup**:
+- Method: `GET`
+- URL: `http://localhost:8080/api/quiz/process?questionId=1`
+
+**Expected Response**:
+```text
+Question processed: 1
+```
+
+#### **4. Submit Answer (POST `/api/quiz/submit/{userId}`)**
+
+**Purpose**: Submits the selected option for a specific user and question.
+
+**Request Example**:
+- **Method**: `POST`
+- **URL**: `http://localhost:8080/api/quiz/submit/{userId}` (replace `{userId}` with an actual numeric `userId`)
+- **Body** (Form-data or URL parameters):
+  - `questionId`: The ID of the question being answered.
+  - `selectedOption`: The selected option number (e.g., 1 for option 1).
+
+**Postman Setup**:
+- Method: `POST`
+- URL: `http://localhost:8080/api/quiz/submit/{userId}` (replace `{userId}` with the actual `userId`)
+- Parameters:
+  - `questionId`: 1
+  - `selectedOption`: 2
+
+**Expected Response**:
+```json
+{
+  "message": "Answer submitted successfully"
+}
+```
+
+#### **5. Get Quiz Result (GET `/api/quiz/result/{userId}`)**
+
+**Purpose**: Fetches the result of the quiz for a specific user.
+
+**Request Example**:
+- **Method**: `GET`
+- **URL**: `http://localhost:8080/api/quiz/result/{userId}` (replace `{userId}` with an actual `userId`)
+
+**Postman Setup**:
+- Method: `GET`
+- URL: `http://localhost:8080/api/quiz/result/{userId}` (replace `{userId}` with the actual `userId`)
+
+**Expected Response**:
+```text
+User 1's quiz result: 5 correct answers out of 10
+```
+
+### 3. **Error Handling (Common Errors)**
+
+Make sure to test invalid inputs as well:
+
+- **Invalid `userId`** in `POST /api/quiz/start/{userId}` or `GET /api/quiz/result/{userId}`:
+  - **Response**: `400 Bad Request: Invalid userId: must be a numeric value`
+
+- **Missing or Invalid Parameters**:
+  - **Response**: `400 Bad Request: Invalid or missing questionId or selectedOption`
+
+### 4. **Using cURL**
+
+You can also test the APIs using `cURL` directly from the terminal. Here are the cURL commands for each endpoint:
+
+#### **1. Start Quiz (POST)**:
+```bash
+curl -X POST http://localhost:8080/api/quiz/start/1
+```
+
+#### **2. Get Random Question (GET)**:
+```bash
+curl http://localhost:8080/api/quiz/question
+```
+
+#### **3. Process Quiz (GET)**:
+```bash
+curl "http://localhost:8080/api/quiz/process?questionId=1"
+```
+
+#### **4. Submit Answer (POST)**:
+```bash
+curl -X POST "http://localhost:8080/api/quiz/submit/1?questionId=1&selectedOption=2"
+```
+
+#### **5. Get Quiz Result (GET)**:
+```bash
+curl http://localhost:8080/api/quiz/result/1
+```
+
+### Conclusion
+
+By using **Postman** or **cURL**, you can easily test the various APIs for your quiz application. Ensure that the application is running on `localhost:8080` and that you've correctly set up the routes and controllers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Here’s a summarized version of how to test the API endpoints for your quiz application:
+
+### 1. **Start the Application**
+Ensure your Spring Boot app is running on port 8080.
+
+```bash
+mvn spring-boot:run  # or ./gradlew bootRun
+```
+
+### 2. **Testing the APIs**
+
+#### **1. Start Quiz (POST `/api/quiz/start/{userId}`)**
+
+- **URL**: `http://localhost:8080/api/quiz/start/{userId}`
+- **Method**: POST
+- **Example**: `POST http://localhost:8080/api/quiz/start/1`
+
+#### **2. Get Random Question (GET `/api/quiz/question`)**
+
+- **URL**: `http://localhost:8080/api/quiz/question`
+- **Method**: GET
+
+#### **3. Process Quiz (GET `/api/quiz/process?questionId={questionId}`)**
+
+- **URL**: `http://localhost:8080/api/quiz/process?questionId=1`
+- **Method**: GET
+
+#### **4. Submit Answer (POST `/api/quiz/submit/{userId}`)**
+
+- **URL**: `http://localhost:8080/api/quiz/submit/{userId}`
+- **Method**: POST
+- **Example**: `POST http://localhost:8080/api/quiz/submit/1?questionId=1&selectedOption=2`
+
+#### **5. Get Quiz Result (GET `/api/quiz/result/{userId}`)**
+
+- **URL**: `http://localhost:8080/api/quiz/result/{userId}`
+- **Method**: GET
+
+### 3. **Error Handling**
+- Invalid `userId`: `400 Bad Request: Invalid userId`
+- Missing Parameters: `400 Bad Request: Invalid or missing parameters`
+
+### 4. **Using cURL**
+
+For each API, use the following cURL commands:
+
+- **Start Quiz**: 
+  ```bash
+  curl -X POST http://localhost:8080/api/quiz/start/1
+  ```
+
+- **Get Random Question**: 
+  ```bash
+  curl http://localhost:8080/api/quiz/question
+  ```
+
+- **Process Quiz**: 
+  ```bash
+  curl "http://localhost:8080/api/quiz/process?questionId=1"
+  ```
+
+- **Submit Answer**: 
+  ```bash
+  curl -X POST "http://localhost:8080/api/quiz/submit/1?questionId=1&selectedOption=2"
+  ```
+
+- **Get Quiz Result**: 
+  ```bash
+  curl http://localhost:8080/api/quiz/result/1
+  ```
+
+This provides a concise overview for testing the quiz application APIs using Postman or cURL.
