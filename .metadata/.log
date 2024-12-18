@@ -304,3 +304,6 @@ Caused by: javax.crypto.AEADBadTagException: Tag mismatch
 	at java.base/sun.security.ssl.SSLEngineInputRecord.decode(SSLEngineInputRecord.java:159)
 	at java.base/sun.security.ssl.SSLTransport.decode(SSLTransport.java:111)
 	... 16 more
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-18 19:32:54.446
+!MESSAGE Classpath changed for project: demo
